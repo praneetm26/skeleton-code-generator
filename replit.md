@@ -11,7 +11,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes (October 30, 2025)
 
 **UI/UX Enhancements:**
-- Added clean, responsive Navbar component at the top of the page styled in PwC's color theme for future navigation
+- Added PwC logo to the top left of the sidebar for prominent brand visibility
 - Reduced spacing and heights throughout the application to make all form inputs visible without scrolling
 - Updated application title from "Skeleton Code Generator" to "Skeleton Code Gen" with consistent typography
 - Fixed sidebar tick mark functionality: Testing Setup step now shows a checkmark when "Generate Unit Test Cases?" is checked and a test framework is selected
@@ -35,9 +35,8 @@ Preferred communication style: Simple, everyday language.
 - Design system follows PwC's corporate identity with warm orange/red accent colors (#d04a02, #e0301e)
 
 **Component Structure:**
-- Navbar component at the top of the page for future navigation options, styled in PwC theme
 - Custom form components (FormField, FormSection, FileUploadZone) for consistent user input with compact spacing
-- StepSidebar component provides visual progress tracking through a 3-step configuration process with dynamic completion states
+- StepSidebar component with PwC logo at the top, providing visual progress tracking through a 3-step configuration process with dynamic completion states
 - Responsive layout with fixed sidebar navigation on desktop, collapsible on mobile
 - Optimized spacing across components to display all form inputs without scrolling
 
