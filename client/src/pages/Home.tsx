@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, Settings, Code, TestTube2, Sparkles } from "lucide-react";
 
 const steps = [
   { id: 1, title: "Project Configuration", description: "Basic project details" },
@@ -94,9 +94,15 @@ export default function Home() {
 
       <main className="flex-1 p-6 lg:p-12 overflow-auto">
         <div className="max-w-3xl mx-auto space-y-6">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Create Your Project</h1>
+            <p className="text-muted-foreground">Configure your project settings and generate a production-ready skeleton</p>
+          </div>
+          
           <FormSection
             title="Project Configuration"
             description="Enter your project name and upload Swagger specification"
+            icon={<Settings className="w-6 h-6 text-primary-foreground" />}
           >
             <FormField label="Project Name" required>
               <Input
@@ -121,6 +127,7 @@ export default function Home() {
           <FormSection
             title="Language & Framework"
             description="Select your programming language and framework"
+            icon={<Code className="w-6 h-6 text-primary-foreground" />}
           >
             <FormField label="Programming Language" required>
               <Select value={language} onValueChange={handleLanguageChange}>
@@ -169,6 +176,7 @@ export default function Home() {
           <FormSection
             title="Testing Setup"
             description="Configure unit testing for your project"
+            icon={<TestTube2 className="w-6 h-6 text-primary-foreground" />}
           >
             <div className="flex items-center space-x-2">
               <Checkbox
@@ -203,10 +211,10 @@ export default function Home() {
             )}
           </FormSection>
 
-          <div className="pt-4">
+          <div className="pt-6">
             <Button
               size="lg"
-              className="w-full text-lg font-semibold"
+              className="w-full text-lg font-bold shadow-lg hover:shadow-xl transition-shadow"
               disabled={!canGenerate || isGenerating}
               onClick={handleGenerate}
               data-testid="button-generate"
@@ -217,9 +225,17 @@ export default function Home() {
                   Generating Project...
                 </>
               ) : (
-                "Generate Project"
+                <>
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Generate Project
+                </>
               )}
             </Button>
+            {canGenerate && !isGenerating && (
+              <p className="text-center text-xs text-muted-foreground mt-3">
+                Click to generate and download your project skeleton
+              </p>
+            )}
           </div>
         </div>
       </main>

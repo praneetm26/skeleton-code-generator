@@ -7,5 +7,9 @@ const steps = [
 ];
 
 export default function StepSidebarExample() {
-  return <StepSidebar steps={steps} currentStep={2} />;
+  return (
+    <div className="h-screen">
+      <StepSidebar steps={steps} currentStep={2} />
+    </div>
+  );
 }
