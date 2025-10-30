@@ -77,17 +77,17 @@ export default function FileUploadZone({ onFileSelect, accept = ".yaml,.yml", cu
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
           className={cn(
-            "border-2 border-dashed rounded-md p-10 text-center cursor-pointer transition-all hover-elevate active-elevate-2 relative overflow-hidden",
+            "border-2 border-dashed rounded-md p-6 text-center cursor-pointer transition-all hover-elevate active-elevate-2 relative overflow-hidden",
             isDragging ? "border-primary bg-primary/5 scale-[1.02]" : "border-border bg-background"
           )}
           data-testid="dropzone-upload"
         >
           <div className={cn(
-            "w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-all",
+            "w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center transition-all",
             isDragging ? "bg-primary scale-110" : "bg-accent"
           )}>
             <Upload className={cn(
-              "w-8 h-8 transition-colors",
+              "w-6 h-6 transition-colors",
               isDragging ? "text-primary-foreground" : "text-primary"
             )} />
           </div>

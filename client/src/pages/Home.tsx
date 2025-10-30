@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar";
 import StepSidebar from "@/components/StepSidebar";
 import FormSection from "@/components/FormSection";
 import FormField from "@/components/FormField";
@@ -49,6 +50,14 @@ export default function Home() {
     setFramework(value);
     setCurrentStep(3);
   };
+
+  useEffect(() => {
+    if (generateTests && testFramework) {
+      setCurrentStep(4);
+    } else if (framework && !generateTests) {
+      setCurrentStep(3);
+    }
+  }, [generateTests, testFramework, framework]);
 
   const handleGenerate = async () => {
     setIsGenerating(true);
@@ -101,34 +110,37 @@ export default function Home() {
   const canGenerate = projectName && language && framework && database && (!generateTests || testFramework);
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <div className="hidden lg:block">
-        <StepSidebar steps={steps} currentStep={currentStep} />
-      </div>
-
-      <div className="lg:hidden w-full border-b border-border bg-sidebar p-4">
-        <h1 className="text-xl font-bold text-sidebar-foreground mb-4">Skeleton Code Generator</h1>
-        <div className="flex gap-2">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className={`flex-1 h-2 rounded-full ${
-                currentStep >= step.id ? "bg-primary" : "bg-sidebar-border"
-              }`}
-              data-testid={`progress-step-${step.id}`}
-            />
-          ))}
+    <div className="flex flex-col min-h-screen bg-background">
+      <Navbar />
+      
+      <div className="flex flex-1 overflow-hidden">
+        <div className="hidden lg:block">
+          <StepSidebar steps={steps} currentStep={currentStep} />
         </div>
-      </div>
 
-      <main className="flex-1 p-6 lg:p-12 overflow-auto">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Create Your Project</h1>
-            <p className="text-muted-foreground">Configure your project settings and generate a production-ready skeleton</p>
+        <div className="lg:hidden w-full border-b border-border bg-sidebar p-3">
+          <h1 className="text-lg font-bold text-sidebar-foreground mb-3">Skeleton Code Gen</h1>
+          <div className="flex gap-2">
+            {steps.map((step) => (
+              <div
+                key={step.id}
+                className={`flex-1 h-2 rounded-full ${
+                  currentStep >= step.id ? "bg-primary" : "bg-sidebar-border"
+                }`}
+                data-testid={`progress-step-${step.id}`}
+              />
+            ))}
           </div>
-          
-          <FormSection
+        </div>
+
+        <main className="flex-1 p-4 lg:p-8 overflow-auto">
+          <div className="max-w-3xl mx-auto space-y-4">
+            <div className="mb-4">
+              <h1 className="text-2xl font-bold text-foreground mb-2">Create Your Project</h1>
+              <p className="text-sm text-muted-foreground">Configure your project settings and generate a production-ready skeleton</p>
+            </div>
+            
+            <FormSection
             title="Project Configuration"
             description="Enter your project name and upload Swagger specification"
             icon={<Settings className="w-6 h-6 text-primary-foreground" />}
@@ -245,7 +257,7 @@ export default function Home() {
             )}
           </FormSection>
 
-          <div className="pt-6">
+          <div className="pt-4">
             <Button
               size="lg"
               className="w-full text-lg font-bold shadow-lg hover:shadow-xl transition-shadow"
@@ -266,13 +278,14 @@ export default function Home() {
               )}
             </Button>
             {canGenerate && !isGenerating && (
-              <p className="text-center text-xs text-muted-foreground mt-3">
+              <p className="text-center text-xs text-muted-foreground mt-2">
                 Click to generate and download your project skeleton
               </p>
             )}
           </div>
         </div>
       </main>
+      </div>
     </div>
   );
 }

@@ -21,8 +21,7 @@ export default function StepSidebar({ steps, currentStep }: StepSidebarProps) {
             <Code2 className="w-6 h-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-sidebar-foreground">Skeleton Code</h1>
-            <p className="text-xs text-primary font-semibold">Generator</p>
+            <h1 className="text-xl font-bold text-sidebar-foreground">Skeleton Code Gen</h1>
           </div>
         </div>
       </div>
