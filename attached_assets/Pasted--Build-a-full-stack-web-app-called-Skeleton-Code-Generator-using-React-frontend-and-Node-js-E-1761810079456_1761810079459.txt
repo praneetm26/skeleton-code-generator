@@ -1,0 +1,105 @@
+
+Build a full-stack web app called “Skeleton Code Generator” using React (frontend) and Node.js + Express (backend).
+
+A PwC-themed web tool where users input project setup details (project name, language, framework, database, etc.), upload a Swagger YAML file, and click “Generate Project” to download a ZIP file of a generated skeleton project.
+
+Frontend (React.js)
+
+Build using React (latest) + Hooks.
+
+Theme: Follow PwC brand design – warm orange/red tones, white backgrounds, modern sans-serif fonts, subtle shadows, and clean minimalism.
+
+UI must be: Dynamic, user-friendly, responsive, attractive, and visually pleasing.
+
+Use Tailwind CSS or Styled Components for consistent styling.
+
+Layout:
+
+Sidebar on the left with 3 steps:
+
+Project Configuration
+
+Language & Framework
+
+Testing Setup
+
+Highlight active step with PwC orange.
+
+Main Form Section:
+
+Fields:
+
+Project Name (text input)
+
+Upload Swagger YAML file (file upload, accepts .yaml / .yml)
+
+Select Programming Language (Java, Node.js, Python)
+
+Select Framework (dynamic: Spring Boot / Express / Flask)
+
+Select Database (PostgreSQL, MySQL, MongoDB)
+
+Checkbox: “Generate Unit Test Cases?”
+
+Select Test Framework (JUnit, Mocha, pytest)
+
+Button: Generate Project (large, PwC-colored, animated on hover).
+
+On click → send all form data + file to backend via Axios POST to /generate-project, then trigger ZIP download.
+
+Backend (Node.js + Express)
+
+Endpoint:
+POST /generate-project
+
+Accepts multipart/form-data:
+
+projectName, language, framework, database, testing, testFramework, swaggerFile.
+
+Backend flow:
+
+Create folder /temp/{projectName}.
+
+Generate project structure and sample files based on inputs.
+
+Include unit test stubs if requested.
+
+Zip the folder using archiver.
+
+Return ZIP file to frontend for download.
+
+Dependencies: express, multer, archiver, fs, path, cors.
+
+Example Structures:
+
+Java + Spring Boot: src/, pom.xml, test/, README.md
+
+Node.js + Express: src/app.js, test/app.test.js, package.json
+
+Frontend–Backend Integration
+
+Frontend on port 3000, backend on 5000.
+
+Add "proxy": "http://localhost:5000" in React package.json.
+
+PwC Theme Reference
+
+Primary Color: #d04a02 (PwC orange)
+
+Secondary Colors: #e0301e, #a32020, #660000
+
+Background: #ffffff
+
+Accent Gray: #f5f5f5
+
+Font: Use clean sans-serif (e.g., Helvetica, Arial, or PwC’s custom font style).
+
+Buttons and highlights use PwC orange; keep soft shadows and rounded corners.
+
+Deliverable
+
+A professional PwC-themed React + Node.js web app.
+
+Dynamic form with file upload, validation, and attractive responsive design.
+
+Backend generates ZIP project based on user inputs and returns it for download.
