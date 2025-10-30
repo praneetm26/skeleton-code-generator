@@ -51,22 +51,51 @@ export default function Home() {
   };
 
   const handleGenerate = async () => {
-    console.log("Generate project triggered", {
-      projectName,
-      swaggerFile: swaggerFile?.name,
-      language,
-      framework,
-      database,
-      generateTests,
-      testFramework,
-    });
-    
     setIsGenerating(true);
-    
-    setTimeout(() => {
+
+    try {
+      const formData = new FormData();
+      formData.append("projectName", projectName);
+      formData.append("language", language);
+      formData.append("framework", framework);
+      formData.append("database", database);
+      formData.append("generateTests", String(generateTests));
+      
+      if (generateTests && testFramework) {
+        formData.append("testFramework", testFramework);
+      }
+      
+      if (swaggerFile) {
+        formData.append("swaggerFile", swaggerFile);
+      }
+
+      const response = await fetch("/api/generate-project", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to generate project");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${projectName}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      console.log("Project generated and downloaded successfully!");
+    } catch (error) {
+      console.error("Error generating project:", error);
+      alert(error instanceof Error ? error.message : "Failed to generate project");
+    } finally {
       setIsGenerating(false);
-      console.log("Project generation complete!");
-    }, 2000);
+    }
   };
 
   const canGenerate = projectName && language && framework && database && (!generateTests || testFramework);
