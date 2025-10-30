@@ -8,6 +8,17 @@ The Skeleton Code Generator is a PwC-branded web application that enables users 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (October 30, 2025)
+
+**UI/UX Enhancements:**
+- Added clean, responsive Navbar component at the top of the page styled in PwC's color theme for future navigation
+- Reduced spacing and heights throughout the application to make all form inputs visible without scrolling
+- Updated application title from "Skeleton Code Generator" to "Skeleton Code Gen" with consistent typography
+- Fixed sidebar tick mark functionality: Testing Setup step now shows a checkmark when "Generate Unit Test Cases?" is checked and a test framework is selected
+- FormSection padding reduced from p-6 to p-4, icons from w-10/h-10 to w-9/h-9
+- FileUploadZone padding reduced from p-10 to p-6, icons from w-16/h-16 to w-12/h-12
+- Main content area padding optimized from p-12 to p-8 on large screens, p-6 to p-4 on smaller screens
+
 ## System Architecture
 
 ### Frontend Architecture
@@ -24,9 +35,11 @@ Preferred communication style: Simple, everyday language.
 - Design system follows PwC's corporate identity with warm orange/red accent colors (#d04a02, #e0301e)
 
 **Component Structure:**
-- Custom form components (FormField, FormSection, FileUploadZone) for consistent user input
-- StepSidebar component provides visual progress tracking through a 3-step configuration process
+- Navbar component at the top of the page for future navigation options, styled in PwC theme
+- Custom form components (FormField, FormSection, FileUploadZone) for consistent user input with compact spacing
+- StepSidebar component provides visual progress tracking through a 3-step configuration process with dynamic completion states
 - Responsive layout with fixed sidebar navigation on desktop, collapsible on mobile
+- Optimized spacing across components to display all form inputs without scrolling
 
 **Design Principles:**
 - Brand-specific custom design adhering to PwC's visual identity
