@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import archiver from "archiver";
+import { randomUUID } from "crypto";
 import type { Response } from "express";
 
 interface ProjectConfig {
@@ -23,8 +24,19 @@ export class ProjectGenerator {
     }
   }
 
+  private sanitizeProjectName(name: string): string {
+    return name.replace(/[^a-zA-Z0-9_-]/g, "");
+  }
+
   async generateProject(config: ProjectConfig, res: Response): Promise<void> {
-    const projectPath = path.join(this.tempDir, config.projectName);
+    const sanitizedName = this.sanitizeProjectName(config.projectName);
+    const uniqueId = randomUUID().substring(0, 8);
+    const safeFolderName = `${sanitizedName}-${uniqueId}`;
+    const projectPath = path.join(this.tempDir, safeFolderName);
+
+    if (!projectPath.startsWith(this.tempDir)) {
+      throw new Error("Invalid project path");
+    }
 
     if (fs.existsSync(projectPath)) {
       fs.rmSync(projectPath, { recursive: true, force: true });

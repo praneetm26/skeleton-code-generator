@@ -138,11 +138,16 @@ export default function Home() {
                 placeholder="my-awesome-project"
                 value={projectName}
                 onChange={(e) => {
-                  setProjectName(e.target.value);
-                  if (e.target.value) setCurrentStep(Math.max(currentStep, 1));
+                  const value = e.target.value.replace(/[^a-zA-Z0-9_-]/g, "");
+                  setProjectName(value);
+                  if (value) setCurrentStep(Math.max(currentStep, 1));
                 }}
                 data-testid="input-project-name"
+                maxLength={100}
               />
+              <p className="text-xs text-muted-foreground mt-1">
+                Only letters, numbers, hyphens, and underscores allowed
+              </p>
             </FormField>
 
             <FormField label="Swagger YAML File">
