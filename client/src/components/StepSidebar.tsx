@@ -1,5 +1,6 @@
 import { Check, Code2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import pwcLogo from "@assets/pwc-logo.jpeg";
 
 interface Step {
   id: number;
@@ -16,6 +17,9 @@ export default function StepSidebar({ steps, currentStep }: StepSidebarProps) {
   return (
     <div className="w-full lg:w-72 bg-sidebar border-r border-sidebar-border p-6">
       <div className="mb-8 pb-6 border-b border-sidebar-border">
+        <div className="flex items-center gap-3 mb-4">
+          <img src={pwcLogo} alt="PwC Logo" className="h-12 w-auto object-contain" />
+        </div>
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-md bg-primary flex items-center justify-center">
             <Code2 className="w-6 h-6 text-primary-foreground" />

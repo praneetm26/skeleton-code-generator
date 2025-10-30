@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
 import StepSidebar from "@/components/StepSidebar";
 import FormSection from "@/components/FormSection";
 import FormField from "@/components/FormField";
@@ -110,13 +109,10 @@ export default function Home() {
   const canGenerate = projectName && language && framework && database && (!generateTests || testFramework);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Navbar />
-      
-      <div className="flex flex-1 overflow-hidden">
-        <div className="hidden lg:block">
-          <StepSidebar steps={steps} currentStep={currentStep} />
-        </div>
+    <div className="flex min-h-screen bg-background">
+      <div className="hidden lg:block">
+        <StepSidebar steps={steps} currentStep={currentStep} />
+      </div>
 
         <div className="lg:hidden w-full border-b border-border bg-sidebar p-3">
           <h1 className="text-lg font-bold text-sidebar-foreground mb-3">Skeleton Code Gen</h1>
@@ -285,7 +281,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-      </div>
     </div>
   );
 }
