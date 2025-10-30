@@ -16,3 +16,14 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const projectGenerationSchema = z.object({
+  projectName: z.string().min(1, "Project name is required"),
+  language: z.enum(["java", "nodejs", "python"]),
+  framework: z.string().min(1, "Framework is required"),
+  database: z.enum(["postgresql", "mysql", "mongodb"]),
+  generateTests: z.boolean(),
+  testFramework: z.string().optional(),
+});
+
+export type ProjectGenerationRequest = z.infer<typeof projectGenerationSchema>;
